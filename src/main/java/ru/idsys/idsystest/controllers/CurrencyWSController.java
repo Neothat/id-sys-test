@@ -1,24 +1,24 @@
 package ru.idsys.idsystest.controllers;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.idsys.idsystest.entyties.CurrencyPair;
+import ru.idsys.idsystest.services.ExchangeRateService;
 
-import java.time.OffsetDateTime;
-
-@RestController("/currencyWS")
+@RestController()
+@RequestMapping("/currencyWS")
+@Getter
 public class CurrencyWSController {
 
-    @GetMapping("/exchangeRate")
-    public ResponseEntity<Float> getExchangeRate(Integer currencyPairId, OffsetDateTime rateDate) {
-        return null;
-    }
+    @Setter(onMethod = @__(@Autowired))
+    ExchangeRateService exchangeRateService;
 
     @GetMapping("/exchangeRate")
-    public ResponseEntity<Float> getExchangeRate(Integer currencyPairId) {
+    public ResponseEntity<Float> getExchangeRate(@RequestParam(name = "currencyPairId") Integer currencyPairId,
+                                                 @RequestParam(name = "rateDate", required = false) String rateDate) {
         return null;
     }
 
@@ -29,7 +29,7 @@ public class CurrencyWSController {
 
     @PostMapping("/currencyPairs")
     public ResponseEntity<String> getCurrencyPairs(@RequestBody String baseCharCode,
-                                 @RequestBody String quotedCharCode) {
+                                                   @RequestBody String quotedCharCode) {
         return null;
     }
 }

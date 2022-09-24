@@ -1,14 +1,14 @@
 package ru.idsys.idsystest.entyties;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "CURRENCY_PAIR")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class CurrencyPair {
 
@@ -33,5 +33,10 @@ public class CurrencyPair {
         this.baseCharCode = baseCharCode;
         this.qoutedCharCode = qoutedCharCode;
         this.description = description;
+    }
+
+    public CurrencyPair(String baseCharCode, String qoutedCharCode) {
+        this.baseCharCode = baseCharCode;
+        this.qoutedCharCode = qoutedCharCode;
     }
 }

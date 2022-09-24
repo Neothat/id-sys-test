@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -15,7 +16,7 @@ public class ExchangeRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer id;
+    private BigInteger id;
 
     @Column(name = "RATE_DATE")
     private OffsetDateTime rateDate;
