@@ -1,9 +1,10 @@
 package ru.idsys.idsystest.entyties;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "CURRENCY_PAIR")
@@ -25,9 +26,6 @@ public class CurrencyPair {
 
     @Column(name = "DESCRIPTION")
     private String description;
-
-    @OneToMany(mappedBy = "currencyPair")
-    List<ExchangeRate> exchangeRates;
 
     public CurrencyPair(String baseCharCode, String qoutedCharCode, String description) {
         this.baseCharCode = baseCharCode;

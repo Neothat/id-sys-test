@@ -25,7 +25,7 @@ public class ExchangeRate {
     private Float rateValue;
 
     @ManyToOne
-    @JoinColumn(name = "CURRENCY_PAIR_ID")
+    @JoinColumn(name = "CURRENCY_PAIR_ID", referencedColumnName = "ID")
     private CurrencyPair currencyPair;
 }
 
