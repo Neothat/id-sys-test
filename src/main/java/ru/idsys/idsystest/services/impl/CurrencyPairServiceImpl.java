@@ -30,6 +30,6 @@ public class CurrencyPairServiceImpl implements CurrencyPairService {
 
     @Override
     public void saveCurrencyPair(String baseCharCode, String quotedCharCode) {
-
+        getCurrencyPairDao().saveOrUpdate(baseCharCode, quotedCharCode);
     }
 }

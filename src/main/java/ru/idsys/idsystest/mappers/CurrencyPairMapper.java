@@ -13,7 +13,7 @@ public interface CurrencyPairMapper {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "baseCharCode", source = "baseCharCode")
-    @Mapping(target = "qoutedCharCode", source = "qoutedCharCode")
+    @Mapping(target = "quotedCharCode", source = "quotedCharCode")
     @Mapping(target = "description", source = "description")
     CurrencyPairDto toDto(CurrencyPair currencyPair);
 }

@@ -22,19 +22,13 @@ public class CurrencyPair {
     private String baseCharCode;
 
     @Column(name = "QOUTED_CHARCODE")
-    private String qoutedCharCode;
+    private String quotedCharCode;
 
     @Column(name = "DESCRIPTION")
     private String description;
 
-    public CurrencyPair(String baseCharCode, String qoutedCharCode, String description) {
+    public CurrencyPair(String baseCharCode, String quotedCharCode) {
         this.baseCharCode = baseCharCode;
-        this.qoutedCharCode = qoutedCharCode;
-        this.description = description;
-    }
-
-    public CurrencyPair(String baseCharCode, String qoutedCharCode) {
-        this.baseCharCode = baseCharCode;
-        this.qoutedCharCode = qoutedCharCode;
+        this.quotedCharCode = quotedCharCode;
     }
 }

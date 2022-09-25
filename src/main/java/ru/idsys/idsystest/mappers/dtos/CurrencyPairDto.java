@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class CurrencyPairDto {
     int id;
     String baseCharCode;
-    String qoutedCharCode;
+    String quotedCharCode;
     String description;
 }
