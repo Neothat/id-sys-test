@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CurrencyPairDao {
     List<CurrencyPair> getAllCurrencyPair();
+
+    CurrencyPair findById(Integer id);
 }

@@ -17,4 +17,9 @@ public class CurrencyPairDaoImpl implements CurrencyPairDao {
     public List<CurrencyPair> getAllCurrencyPair() {
         return session.createQuery("from CurrencyPair", CurrencyPair.class).getResultList();
     }
+
+    @Override
+    public CurrencyPair findById(Integer id) {
+        return session.get(CurrencyPair.class, id);
+    }
 }
