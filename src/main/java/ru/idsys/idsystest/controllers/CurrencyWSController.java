@@ -28,7 +28,7 @@ public class CurrencyWSController {
     @GetMapping("/exchangeRate")
     public ResponseEntity<Float> getExchangeRate(@RequestParam(name = "currencyPairId") Integer currencyPairId,
                                                  @RequestParam(name = "rateDate", required = false) String rateDate) {
-        return new ResponseEntity<>(getExchangeRateService().getExchangeRate(currencyPairId), HttpStatus.OK);
+        return new ResponseEntity<>(getExchangeRateService().getExchangeRate(currencyPairId, rateDate), HttpStatus.OK);
     }
 
     @GetMapping("/currencyPairs")
