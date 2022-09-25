@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.idsys.idsystest.entyties.CurrencyPair;
+import ru.idsys.idsystest.entyties.ExchangeRate;
 
 @Slf4j
 public class HibernateUtil {
@@ -13,6 +14,7 @@ public class HibernateUtil {
         try {
             return new Configuration().configure()
                     .addAnnotatedClass(CurrencyPair.class)
+                    .addAnnotatedClass(ExchangeRate.class)
                     .buildSessionFactory();
         } catch (Throwable e) {
             log.error("Initial SessionFactory creation failed. ", e);

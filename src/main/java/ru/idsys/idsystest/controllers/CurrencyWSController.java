@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.idsys.idsystest.mappers.CurrencyPairMapper;
 import ru.idsys.idsystest.mappers.dtos.CurrencyPairDto;
 import ru.idsys.idsystest.services.CurrencyPairService;
+import ru.idsys.idsystest.services.ExchangeRateService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +19,8 @@ import java.util.stream.Collectors;
 @Getter
 public class CurrencyWSController {
 
-//    @Setter(onMethod = @__(@Autowired))
-//    ExchangeRateService exchangeRateService;
+    @Setter(onMethod = @__(@Autowired))
+    ExchangeRateService exchangeRateService;
 
     @Setter(onMethod = @__(@Autowired))
     CurrencyPairService currencyPairService;
@@ -27,7 +28,7 @@ public class CurrencyWSController {
     @GetMapping("/exchangeRate")
     public ResponseEntity<Float> getExchangeRate(@RequestParam(name = "currencyPairId") Integer currencyPairId,
                                                  @RequestParam(name = "rateDate", required = false) String rateDate) {
-        return null;
+        return new ResponseEntity<>(getExchangeRateService().getExchangeRate(currencyPairId), HttpStatus.OK);
     }
 
     @GetMapping("/currencyPairs")
