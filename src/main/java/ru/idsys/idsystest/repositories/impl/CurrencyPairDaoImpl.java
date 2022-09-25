@@ -22,4 +22,11 @@ public class CurrencyPairDaoImpl implements CurrencyPairDao {
     public CurrencyPair findById(Integer id) {
         return session.get(CurrencyPair.class, id);
     }
+
+    @Override
+    public void saveOrUpdate(String baseCharCode, String quotedCharCode) {
+        session.beginTransaction();
+        session.saveOrUpdate(new CurrencyPair(baseCharCode, quotedCharCode));
+        session.getTransaction().commit();
+    }
 }

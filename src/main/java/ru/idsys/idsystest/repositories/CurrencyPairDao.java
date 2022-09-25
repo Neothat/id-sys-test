@@ -8,4 +8,6 @@ public interface CurrencyPairDao {
     List<CurrencyPair> getAllCurrencyPair();
 
     CurrencyPair findById(Integer id);
+
+    void saveOrUpdate(String baseCharCode, String quotedCharCode);
 }

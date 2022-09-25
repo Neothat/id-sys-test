@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.idsys.idsystest.entyties.CurrencyPair;
 import ru.idsys.idsystest.mappers.CurrencyPairMapper;
 import ru.idsys.idsystest.mappers.dtos.CurrencyPairDto;
 import ru.idsys.idsystest.services.CurrencyPairService;
@@ -38,9 +39,9 @@ public class CurrencyWSController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @PostMapping("/currencyPairs")
-    public ResponseEntity<String> getCurrencyPairs(@RequestBody String baseCharCode,
-                                                   @RequestBody String quotedCharCode) {
-        return null;
+    @PostMapping(path = "/currencyPairs")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void getCurrencyPairs(@RequestBody CurrencyPair newCurrencyPair) {
+        getCurrencyPairService().saveCurrencyPair(newCurrencyPair.getBaseCharCode(), newCurrencyPair.getQuotedCharCode());
     }
 }
