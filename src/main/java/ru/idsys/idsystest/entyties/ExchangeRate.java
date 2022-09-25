@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigInteger;
-import java.time.OffsetDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "EXCHANGE_RATE")
@@ -19,7 +19,7 @@ public class ExchangeRate {
     private BigInteger id;
 
     @Column(name = "RATE_DATE")
-    private OffsetDateTime rateDate;
+    private Timestamp rateDate;
 
     @Column(name = "RATE_VALUE")
     private Float rateValue;
