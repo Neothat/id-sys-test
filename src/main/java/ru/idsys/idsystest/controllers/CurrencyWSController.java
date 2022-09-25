@@ -3,18 +3,26 @@ package ru.idsys.idsystest.controllers;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.idsys.idsystest.entyties.CurrencyPair;
-import ru.idsys.idsystest.services.ExchangeRateService;
+import ru.idsys.idsystest.mappers.CurrencyPairMapper;
+import ru.idsys.idsystest.mappers.dtos.CurrencyPairDto;
+import ru.idsys.idsystest.services.CurrencyPairService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController()
 @RequestMapping("/currencyWS")
 @Getter
 public class CurrencyWSController {
 
+//    @Setter(onMethod = @__(@Autowired))
+//    ExchangeRateService exchangeRateService;
+
     @Setter(onMethod = @__(@Autowired))
-    ExchangeRateService exchangeRateService;
+    CurrencyPairService currencyPairService;
 
     @GetMapping("/exchangeRate")
     public ResponseEntity<Float> getExchangeRate(@RequestParam(name = "currencyPairId") Integer currencyPairId,
@@ -23,8 +31,10 @@ public class CurrencyWSController {
     }
 
     @GetMapping("/currencyPairs")
-    public ResponseEntity<CurrencyPair> getCurrencyPairs() { // Replace with DTO/Mapper
-        return null;
+    public ResponseEntity<List<CurrencyPairDto>> getCurrencyPairs() {
+        return new ResponseEntity<>(getCurrencyPairService().getAllCurrencyPair().stream()
+                .map(CurrencyPairMapper.INSTANCE::toDto)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @PostMapping("/currencyPairs")
