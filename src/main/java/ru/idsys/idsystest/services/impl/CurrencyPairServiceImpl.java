@@ -10,6 +10,7 @@ import ru.idsys.idsystest.services.CurrencyPairService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CurrencyPairServiceImpl implements CurrencyPairService {
@@ -24,6 +25,13 @@ public class CurrencyPairServiceImpl implements CurrencyPairService {
     }
 
     @Override
+    public List<String> getListCurrencyPair() {
+        return getAllCurrencyPair().stream()
+                .map(pair -> pair.getBaseCharCode() + pair.getQuotedCharCode())
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<CurrencyPair> getById(Integer id) {
         return Optional.empty();
     }
@@ -31,5 +39,15 @@ public class CurrencyPairServiceImpl implements CurrencyPairService {
     @Override
     public void saveCurrencyPair(String baseCharCode, String quotedCharCode) {
         getCurrencyPairDao().saveOrUpdate(baseCharCode, quotedCharCode);
+    }
+
+    @Override
+    public CurrencyPair findByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode) {
+        return getCurrencyPairDao().findByBaseCharAndQuotedChar(baseCharCode, quotedCharCode);
+    }
+
+    @Override
+    public Integer getIdByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode) {
+        return getCurrencyPairDao().getIdByBaseCharAndQuotedChar(baseCharCode, quotedCharCode);
     }
 }

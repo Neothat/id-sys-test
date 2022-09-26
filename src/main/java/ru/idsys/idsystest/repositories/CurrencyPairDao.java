@@ -10,4 +10,8 @@ public interface CurrencyPairDao {
     CurrencyPair findById(Integer id);
 
     void saveOrUpdate(String baseCharCode, String quotedCharCode);
+
+    CurrencyPair findByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode);
+
+    Integer getIdByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode);
 }

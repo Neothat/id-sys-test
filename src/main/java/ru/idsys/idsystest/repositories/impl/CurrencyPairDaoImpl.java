@@ -29,4 +29,18 @@ public class CurrencyPairDaoImpl implements CurrencyPairDao {
         session.saveOrUpdate(new CurrencyPair(baseCharCode, quotedCharCode));
         session.getTransaction().commit();
     }
+
+    @Override
+    public CurrencyPair findByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode) {
+        return session.createQuery("select cp from CurrencyPair as cp " +
+                        "where baseCharCode = :baseCharCodeParam and quotedCharCode = :quotedCharCodeParam", CurrencyPair.class)
+                .setParameter("baseCharCodeParam", baseCharCode)
+                .setParameter("quotedCharCodeParam", quotedCharCode)
+                .getSingleResult();
+    }
+
+    @Override
+    public Integer getIdByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode) {
+        return findByBaseCharAndQuotedChar(baseCharCode, quotedCharCode).getId();
+    }
 }

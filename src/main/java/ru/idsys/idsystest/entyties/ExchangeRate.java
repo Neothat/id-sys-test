@@ -27,6 +27,12 @@ public class ExchangeRate {
     @ManyToOne
     @JoinColumn(name = "CURRENCY_PAIR_ID", referencedColumnName = "ID")
     private CurrencyPair currencyPair;
+
+    public ExchangeRate(Timestamp rateDate, Float rateValue, CurrencyPair currencyPair) {
+        this.rateDate = rateDate;
+        this.rateValue = rateValue;
+        this.currencyPair = currencyPair;
+    }
 }
 
 
