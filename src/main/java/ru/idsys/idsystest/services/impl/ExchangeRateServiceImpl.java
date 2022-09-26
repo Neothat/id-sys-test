@@ -3,6 +3,7 @@ package ru.idsys.idsystest.services.impl;
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.idsys.idsystest.entyties.CurrencyPair;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 
 @Service
 @Getter
+@Slf4j
 public class ExchangeRateServiceImpl implements ExchangeRateService {
 
     @Setter(onMethod = @__(@Autowired))
@@ -35,5 +37,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     @Override
     public void save(Timestamp rateDate, Float rateValue, CurrencyPair currencyPair) {
         getExchangeRateDao().save(rateDate, rateValue, currencyPair);
+        log.info("New exchange rate crated");
     }
 }

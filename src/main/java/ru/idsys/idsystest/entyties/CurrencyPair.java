@@ -21,7 +21,7 @@ public class CurrencyPair {
     @Column(name = "BASE_CHARCODE")
     private String baseCharCode;
 
-    @Column(name = "QOUTED_CHARCODE")
+    @Column(name = "QUOTED_CHARCODE")
     private String quotedCharCode;
 
     @Column(name = "DESCRIPTION")
