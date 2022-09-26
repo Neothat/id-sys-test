@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  liquibase:
+    enabled: true
+  datasource:
+    driver-class-name: org.firebirdsql.jdbc.FBDriver
+    url: jdbc:firebirdsql://localhost:3050/D:Trash\DB\IDSYSDB.FDB
+    username: SYSDBA
+    password: masterkey
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.FirebirdDialect
+    hibernate:
+      ddl-auto: none
