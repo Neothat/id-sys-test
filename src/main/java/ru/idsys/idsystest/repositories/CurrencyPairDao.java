@@ -12,6 +12,4 @@ public interface CurrencyPairDao {
     void saveOrUpdate(String baseCharCode, String quotedCharCode);
 
     CurrencyPair findByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode);
-
-    Integer getIdByBaseCharAndQuotedChar(String baseCharCode, String quotedCharCode);
 }

@@ -50,15 +50,16 @@ public class CurrateAPIServiceImpl implements CurrateAPIService {
 
                 String jsonString;
                 if ((jsonString = in.readLine()) != null) {
+                    log.info("json received: " + jsonString);
                     JSONObject data = new JSONObject(jsonString).getJSONObject("data");
                     currencyPair.forEach(pair -> getExchangeRateService().save(
-                            new Timestamp(System.currentTimeMillis()),
+                            timestamp(),
                             data.getFloat(pair),
                             getCurrencyPairService().findByBaseCharAndQuotedChar(pair.substring(0, 3), pair.substring(3, 6)))
                     );
                 }
             } else {
-                log.error(String.format("fail: %s, %s", connection.getResponseCode(), connection.getResponseMessage()));
+                log.error(String.format("Connection fail: %s, %s", connection.getResponseCode(), connection.getResponseMessage()));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,9 +70,15 @@ public class CurrateAPIServiceImpl implements CurrateAPIService {
         }
     }
 
+    private Timestamp timestamp() {
+        String now = Long.toString(System.currentTimeMillis());
+        return new Timestamp(Long.parseLong(now.substring(0, now.length() - 3) + "000"));
+    }
+
     private void buildQuery() {
         currencyPair = getCurrencyPairService().getListCurrencyPair();
         query = baseURL + String.join(",", currencyPair) + key;
+        log.info("Generated GET request: " + query);
     }
 
     private void connectionSetup() throws IOException {
@@ -81,5 +88,6 @@ public class CurrateAPIServiceImpl implements CurrateAPIService {
         connection.setConnectTimeout(connectTimeout);
         connection.setReadTimeout(readTimeout);
         connection.connect();
+        log.info("Connection set up");
     }
 }

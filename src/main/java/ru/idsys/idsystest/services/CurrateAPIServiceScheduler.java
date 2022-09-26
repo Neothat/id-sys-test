@@ -1,4 +1,4 @@
-package ru.idsys.idsystest.services.impl;
+package ru.idsys.idsystest.services;
 
 import lombok.Getter;
 import lombok.Setter;
