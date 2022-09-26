@@ -14,7 +14,7 @@ public class CurrateAPIServiceScheduler {
     @Getter
     private CurrateAPIService currateAPIService;
 
-//    @Scheduled(fixedRate = 1000L * 60)
+    @Scheduled(fixedRate = 1000L * 60)
     void makeRequest() {
         getCurrateAPIService().getRatesForCurrencies();
     }
