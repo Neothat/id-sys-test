@@ -31,4 +31,9 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
         }
         return getExchangeRateDao().getExchangeRate(currencyPair).getRateValue();
     }
+
+    @Override
+    public void save(Timestamp rateDate, Float rateValue, CurrencyPair currencyPair) {
+        getExchangeRateDao().save(rateDate, rateValue, currencyPair);
+    }
 }

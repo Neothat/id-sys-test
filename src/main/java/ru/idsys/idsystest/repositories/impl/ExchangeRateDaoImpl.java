@@ -29,4 +29,11 @@ public class ExchangeRateDaoImpl implements ExchangeRateDao {
                 .setParameter("rateDateParam", rateDate)
                 .getSingleResult();
     }
+
+    @Override
+    public void save(Timestamp rateDate, Float rateValue, CurrencyPair currencyPair) {
+        session.beginTransaction();
+        session.save(new ExchangeRate(rateDate, rateValue, currencyPair));
+        session.getTransaction().commit();
+    }
 }
